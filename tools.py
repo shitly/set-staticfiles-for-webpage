@@ -6,6 +6,8 @@ import urllib.request as ur
 from numpy.random import randint
 import urllib
 
+from config import origin, new
+
 def write_txt_to_file(string ,leixin):
     now = datetime.now()
     r = randint(1000)
@@ -20,6 +22,7 @@ def write_txt_to_file(string ,leixin):
 
 from config import INIT_URL
 def write_file(url1, leixin):
+
     if len(url1.split("\\"))>1:
         url = "https:" + url1
     else:
@@ -45,7 +48,20 @@ def write_file(url1, leixin):
         f.close()
 
     print("写入"+leixin+"文件"+f_name)
+
+    origin.append(url1)
+    new.append(leixin + "/" + f_name)
+
     return 
+
+def get_origin_new():
+    res = []
+    for i in range(len(origin)):
+        temp_dict = {}
+        temp_dict.setdefault("origin", origin[i])
+        temp_dict.setdefault("new", new[i])
+        res.append(temp_dict)
+    return res
 
 '''
 1, 加载保存和替换; 表头全部写上。img为原始和替换

@@ -11,7 +11,6 @@ def set_static():
 
 set_static()
 
-
 from config import URL, INIT_URL
 import urllib.request as ur
 from bs4 import BeautifulSoup
@@ -79,6 +78,22 @@ def extract_static_to_data():
         write_file(link_to_main(x)[0], "css")
     return 
 
-extract_static_to_data()    
+extract_static_to_data()
 
+from tools import get_origin_new
+
+def replace_new_origin():
+    with open(BASE_DIR + "//" + "index.html", "r+", encoding="GB2312") as f:
+        string = f.read()
+        for x in get_origin_new():
+            string.replace(x["origin"], x["new"])
+        with open(BASE_DIR + "//" + "index_test.html", "w+") as f2:
+            f2.write(string)
+            f2.close()
+        f.close()
+
+replace_new_origin()
+
+
+        
 

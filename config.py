@@ -3,3 +3,6 @@
 URL = "http://gzqinglang.com"
 # url 的头连接
 INIT_URL = URL
+
+origin = []
+new = []
